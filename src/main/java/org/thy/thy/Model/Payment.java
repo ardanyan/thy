@@ -1,6 +1,5 @@
 package org.thy.thy.Model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +20,17 @@ public class Payment {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String order_id;
-    private BigDecimal price_usd;
-    private String success_url;
-    private String cancel_url;
+    @Column(name = "order_id")
+    private String orderId;
+
+    @Column(name = "price_usd")
+    private BigDecimal priceUsd;
+
+    @Column(name = "success_url")
+    private String successUrl;
+
+    @Column(name = "cancel_url")
+    private String cancelUrl;
 
     @OneToMany(mappedBy = "payment", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Transaction> transactions;
